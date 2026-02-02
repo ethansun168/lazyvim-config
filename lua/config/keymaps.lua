@@ -11,7 +11,6 @@ unmap("i", "<a-j>")
 unmap("i", "<a-k>")
 unmap("v", "<a-j>")
 unmap("v", "<a-k>")
-unmap("n", "<leader>/")
 
 -- Copy and paste into clipboard buffer
 map("n", "<leader>y", '"+y')
@@ -34,13 +33,17 @@ map("i", "<C-l>", "<Right>")
 
 map("v", "<leader>/", "gcc<esc>", { remap = true, desc = "Comment line" })
 map("n", "<leader>/", "gcc<esc>", { remap = true, desc = "Comment line" })
-map("n", "<leader>fw", function()
-  Snacks.picker.grep_word()
-end, { desc = "Grep" })
 
 -- Terminals
-map({ "n", "t" }, "<a-j>", function()
-  Snacks.terminal.toggle(nil, { count = 1, cwd = LazyVim.root(), win = { position = "bottom" } })
+map({ "n", "t" }, "<A-j>", function()
+  Snacks.terminal.toggle(nil, {
+    count = 1,
+    win = {
+      wo = {
+        winbar = "",
+      },
+    },
+  })
 end, { desc = "Terminal (Root Dir)" })
 
 vim.keymap.set({ "n", "t" }, "<A-i>", function()
@@ -54,3 +57,9 @@ vim.keymap.set({ "n", "t" }, "<A-i>", function()
     },
   })
 end, { desc = "Toggle Floating Terminal" })
+
+map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
+
+map("n", "<a-p>", function()
+  Snacks.picker.files()
+end, { desc = "Find files" })

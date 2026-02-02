@@ -7,4 +7,8 @@ return {
     "mini-nvim/mini.surround",
     enabled = false,
   },
+  {
+    "folke/noice.nvim",
+    enabled = false,
+  },
 }
